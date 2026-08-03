@@ -55,8 +55,7 @@ Everything that can affect the output is packed into a
 - `OptLevel`
 
 This struct is the cache key material. See
-[`martins-fork-llvm-translation-cache.md`](martins-fork-llvm-translation-cache.md)
-for what the cache does with it.
+[`4_translation-cache.md`](4_translation-cache.md) for what the cache does with it.
 
 ### 3. Enumerate kernels
 
@@ -79,8 +78,8 @@ Three outcomes:
   entire translation is skipped, which is why a hit reports
   `cache_write=not_attempted`.
 
-See [`martins-fork-llvm-translation-cache.md`](martins-fork-llvm-translation-cache.md)
-for what a hit actually returns and how integrity is verified on read.
+See [`4_translation-cache.md`](4_translation-cache.md) for what a hit actually
+returns and how integrity is verified on read.
 
 ### 5. Hand off to the hotswap library
 
@@ -127,8 +126,8 @@ failure, which is how the lit test can assert
 Only when it was a genuine `Miss` — not a hit, not bypassed. A `WriteFailed` is
 also a hard error, matching the lookup-side strictness.
 
-See [`martins-fork-llvm-translation-cache.md`](martins-fork-llvm-translation-cache.md)
-for the on-disk layout and the atomic write behaviour.
+See [`4_translation-cache.md`](4_translation-cache.md) for the on-disk layout and the
+atomic write behaviour.
 
 ### 8. Produce the output
 

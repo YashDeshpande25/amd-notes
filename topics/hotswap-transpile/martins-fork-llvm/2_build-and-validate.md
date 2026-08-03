@@ -137,6 +137,33 @@ Read the `RESULT_INFO` line for the real verdict — `lifted=N total=N` is the o
 to watch. Equal values mean every instruction was translated; `lifted` short of
 `total` means partial coverage even when the call reports success.
 
+It's a coverage measure on the input, not the output. From the source:
+
+- `TotalCount = Insts.size()` — the number of machine instructions decoded from
+  the source kernel's `.text`.
+- `LiftedCount = RaisedCount` — how many of those were successfully raised into
+  LLVM IR.
+
+So `lifted=23 total=23` means the gfx950 kernel contained 23 instructions and the
+raiser understood and translated all 23. Nothing was skipped or unhandled. That's
+the number to watch, because equality is what tells you the translation is
+complete rather than partial.
+
+It says nothing about the output.
+
+For multi-kernel objects it's a sum. The pipeline accumulates with `+=` across
+every kernel in the code object, so a two-kernel object reports combined totals
+rather than per-kernel ones. Use `HSA_HOTSWAP_TRANSLATE_KERNEL` if you need to
+attribute a shortfall to a specific kernel.
+
+The values are also stored in the translation cache (`lifted_count` /
+`total_count`), so a `cache_hit=1` run replays the same numbers rather than
+recomputing them.
+
+When `lifted` falls short of `total`, that's your signal that some instruction in
+the source has no translation rule yet — the mnemonic and encoding format are
+what the `RESULT: ERROR` path reports as the blocker.
+
 ## 6. How do I generate input/output assembly?
 
 The pipeline has a built-in dump facility, and it emits real assembly, not just a

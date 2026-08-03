@@ -8,7 +8,7 @@ Porting `matmul.cu` to HIP, running it on gfx942, and pulling a raw `.hsaco` out
 of the HIP source so it can be fed to the hotswap transpiler.
 
 For building the transpiler itself and translating the in-tree `vecadd` fixture,
-see `topics/hotswap-transpile/martins-fork-llvm-build-and-validate.md`.
+see `topics/hotswap-transpile/martins-fork-llvm/2_build-and-validate.md`.
 
 Machine: AMD Instinct MI300X, `gfx942:sramecc+:xnack-`, ROCm 7.2.1.
 
