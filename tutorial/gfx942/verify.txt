@@ -1,0 +1,14 @@
+### bundle targets
+hipv4-amdgcn-amd-amdhsa--gfx942
+host-x86_64-unknown-linux-gnu-
+
+### llvm-readelf -h matmul_gfx942.hsaco
+  OS/ABI:                            AMDGPU - HSA
+  ABI Version:                       4
+  Type:                              DYN (Shared object file)
+  Machine:                           EM_AMDGPU
+  Flags:                             0x54c, gfx942, xnack, sramecc
+
+### llvm-objdump --syms matmul_gfx942.hsaco
+0000000000001900 g     F .text	00000000000000e0 .protected _Z13matmul_kernelPfS_S_j
+00000000000008c0 g     O .rodata	0000000000000040 .protected _Z13matmul_kernelPfS_S_j.kd

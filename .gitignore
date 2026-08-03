@@ -1,0 +1,3 @@
+# Compiled host executables — rebuild with hipcc, see tutorial/ notes for commands
+tutorial/matmul_hipModuleLoad_code_obj
+tutorial/gfx*/matmul_hip
